@@ -36,7 +36,6 @@ for row in cursor:
         if len(text_s) == 0:
             continue
         words = text_s.split()
-        # print(words)
         for word in words:
             if word.startswith('http'):
                 continue
@@ -45,16 +44,31 @@ for row in cursor:
             if word in w_not_required:
                 continue
             table[word] = table.get(word, 0) + 1
-# table_sor = dict(sorted(table.items(), key=lambda item: item[1], reverse=True))
-table_sor = sorted(table, key=table.get, reverse=True)
+table_sorted = sorted(table.items(), key=lambda item: item[1], reverse=True)
+table_sorted = table_sorted[:100]
 
-# print(table_sor, '\n')
+upper = table_sorted[0][1]
+lower = table_sorted[-1][1]
 
-bigger = None
-# lower = None
-for k in table_sor[:100]:
-    if bigger is None or bigger < table_sor[:100]:
-        bigger = table_sor[:100]
-    # if lower is None or lower > table_sor[:100]:
-    #     lower = table_sor[:100]
-print('Range of table:', bigger)
+
+def normalitation(count, upper, lower):
+    bigsize = 80
+    smallsize = 20
+
+    size_fx = (count - lower) / float(upper - lower)
+    size = (size_fx * bigsize) + smallsize
+    return size
+
+
+my_js = open('gword.js', 'w')
+my_js.write("gword = [")
+headd = True
+for i in table_sorted:
+    if not headd:
+        my_js.write(",\n")
+    headd = False
+    size_f = i[1]
+    my_js.write("{text: '"+i[0]+"', size: " +
+                str(normalitation(size_f, upper, lower))+"}")
+my_js.write("\n];\n")
+my_js.close()
