@@ -9,16 +9,16 @@ parser.add_argument("-f", "--sqlite-db", required=True,
 args = parser.parse_args()
 db_con = sqlite3.connect(args.sqlite_db)
 cursor = db_con.cursor()
-cursor.execute('SELECT * FROM Pages LIMIT 10')
-w_not_required = ['also', 'added', 'about', 'arguments', 'been', 'bytes', 'called', 'changed', 'them', 'want', 'provides', 'window',
-                  'changes', 'call', 'current', 'contributed', 'characters', 'document', 'does', 'example', 'each', 'written', 'provided',
-                  'from', 'file', 'functions', 'first', 'following', 'files', 'given', 'have', 'information', 'instance', 'instead', 'into',
+cursor.execute('SELECT * FROM Pages')
+w_not_required = ['also', 'added', 'about', 'arguments', 'been', 'bytes', 'called', 'changed', 'them', 'want', 'provides', 'window', 'longer',
+                  'changes', 'call', 'current', 'contributed', 'characters', 'document', 'does', 'example', 'each', 'written', 'provided', 'supported',
+                  'from', 'file', 'functions', 'first', 'following', 'files', 'given', 'have', 'information', 'instance', 'instead', 'into', 'what',
                   'line', 'like', 'methods', 'must', 'more', 'modules', 'message', 'name', 'note', 'next', 'names', 'objects', 'because',  'exceptions', 'just',
                   'only', 'other', 'previous', 'returns', 'returned', 'raised', 'release', 'should', 'same', 'some', 'being', 'were', 'whether', 'many',
-                  'supports', 'such', 'specified', 'this', 'that', 'there', 'than', 'these', 'they', 'then', 'types', 'time', 'used', 'using',
+                  'supports', 'such', 'specified', 'this', 'that', 'there', 'than', 'these', 'they', 'then', 'types', 'time', 'used', 'using', 'corresponding',
                   'values', 'with', 'will', 'when', 'which', 'standard', 'updated', 'builtin', 'format', 'sequence', 'where', 'your', 'directory', 'defined',
                   'windows', 'available', 'attributes', 'after', 'always', 'before', 'base', 'both', 'between', 'classes', 'created', 'containing',
-                  'calls', 'calling', 'contains', 'different', 'either', 'equivalent', 'form', 'found', 'link', 'most', 'errors',
+                  'calls', 'calling', 'contains', 'different', 'either', 'equivalent', 'form', 'found', 'link', 'most', 'errors', 'part',
                   'mode', 'make', 'need',  'optional', 'options', 'otherwise', 'passed', 'process', 'possible', 'strings', 'parameters', 'variables',
                   'suggesting', 'since', 'size', 'single', 'section', 'text', 'test', 'their', 'uses', 'useful', 'without', 'would']
 table = dict()
@@ -46,6 +46,7 @@ for row in cursor:
             table[word] = table.get(word, 0) + 1
 table_sorted = sorted(table.items(), key=lambda item: item[1], reverse=True)
 table_sorted = table_sorted[:100]
+print(table_sorted)
 
 upper = table_sorted[0][1]
 lower = table_sorted[-1][1]
