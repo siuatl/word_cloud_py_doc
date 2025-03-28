@@ -1,3 +1,7 @@
+<p align="center">
+<img src="https://github.com/siuatl/word_cloud_py_doc/blob/main/python_wordcloud.png" alt="wordcloud" width="400" height="400">
+</p>
+
 # Python Documentation Word Cloud
 This program allows the user to generate a [*word cloud*](https://en.wikipedia.org/wiki/Tag_cloud) from the [*Python documentation*](https://docs.python.org/3/).
 
