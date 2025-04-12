@@ -7,14 +7,13 @@ import sys
 
 def normalize_size(count, upper, lower):
     """ 
-    Calcula la normalizacion del tamano de la frecuencia de palabras
+    Calculates the normalized size for the given word frequency.
 
-    :param count (int): Es la frecuencia de la palabra.
-    :param upper (int): Es la frecuencia mas grande de palabras.
-    :param lower (int): Es la frecuencia mas chico de palabras.
+    :param count (int): The word frequency.
+    :param upper (int): The highest word frequency.
+    :param lower (int): The lowest word frequency.
 
-    :returns: El tamano entre 20 y 100 inclusive donde el porcentaje de la frecuencia de la palabra
-    es en proporcion al porcentaje del tamano.
+    :returns: The size between 20 and 100 inclusive, where the word frequency percentage is proportional to the size percentage.
     """
 
     # Range of sizes = [0, 80] + 20 = [20, 100]
@@ -74,7 +73,6 @@ def main():
     table_sorted = sorted(
         table.items(), key=lambda item: item[1], reverse=True)
     table_sorted = table_sorted[:100]
-    # print(table_sorted)
 
     upper = table_sorted[0][1]
     lower = table_sorted[-1][1]
