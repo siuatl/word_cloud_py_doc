@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 import sqlite3
 from bs4 import BeautifulSoup
 import argparse
